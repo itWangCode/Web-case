@@ -1,0 +1,56 @@
+<!-- 先设置所有内容隐藏，然后点击标题对用的内容显示。 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+*{
+ padding: 0;
+ margin: 0;
+}
+li{
+ list-style: none;
+float:left;
+}
+#tabCon{
+ clear: both;
+}
+#tabCon_1{
+display: none;
+}
+#tabCon_2{
+ display: none;
+}
+#tabCon_3{
+display: none;
+}
+</style>
+<script>
+function changeTab(tabCon_num){
+for(i=0;i<=3;i++) { 
+ document.getElementById("tabCon_"+i).style.display="none"; //将所有的层都隐藏 
+ } 
+ document.getElementById("tabCon_"+tabCon_num).style.display="block";//显示当前层 
+} 
+</script>
+</head>
+<body>
+<div id="tanContainer">
+ <div id="tab">
+ <ul>
+  <li onclick="changeTab('0')">标题一</li>
+  <li onclick="changeTab('1')">标题二</li>
+  <li onclick="changeTab('2')">标题三</li>
+  <li onclick="changeTab('3')">标题四</li>
+ </ul>
+</div>
+ <div id="tabCon">
+ <div id="tabCon_0">内容一</div>
+ <div id="tabCon_1">内容二</div>
+ <div id="tabCon_2">内容三</div>
+ <div id="tabCon_3">内容四</div>
+</div>
+</div>
+</body>
+</html>

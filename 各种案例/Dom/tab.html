@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style>
+        div {
+            margin: 0;
+            padding: 0;
+            width: 184px;
+            height: 200px;
+            display: none;
+        }
+
+        .tab {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 200px;
+            overflow: hidden;
+        }
+
+        .tab li {
+            float: left;
+            width: 60px;
+            height: 30px;
+            color: #666666;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+        .on {
+            display: block;
+        }
+
+        .tab li.cur {
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+
+<ul class="tab">
+    <li>最新</li>
+    <li class="cur">热门</li>
+    <li>新闻</li>
+</ul>
+
+<div>11</div>
+<div class="on">22</div>
+<div>33</div>
+<script type="text/javascript" src="jquery-1.12.3.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".tab li").click(function () {
+            $(".tab li").eq($(this).index()).addClass("cur").siblings().removeClass('cur');
+            $("div").hide().eq($(this).index()).show();
+            //另一种方法: $("div").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on');
+
+        });
+    });
+</script>
+
+</body>
+</html>

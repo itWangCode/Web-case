@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<link type="text/css" rel="stylesheet" href="css/tabs.css" />
+<style type="text/css" media="screen">
+	.tabs div {
+    display:none;
+    clear:both;
+    border:solid 2px #09f;
+    min-height:500px
+}
+.tabs .horizontal {
+    margin:0;
+    padding:0
+}
+.tabs .horizontal li {
+    float:left;
+    list-style:none;
+    height:50px;
+    line-height:50px;
+    background-color:#ddd;
+    width:150px;
+    text-align:center;
+    cursor:pointer;
+    font-size:20px
+}
+.tabs .horizontal li:not(:first-child) {
+    margin-left:5px
+}
+.tabs .horizontal li.selectActive {
+    border-bottom:solid 2px #09f;
+    background-color:#09f;
+    color:#fff
+}
+</style>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/tabs.js"></script>
+</head>
+<body>
+<div class='tabs' id="tabs">
+<ul class='horizontal'>
+<li rel="tab-1">information</li>
+<li rel="tab-2" relHref="T1.html" class="selectActive">tab2</li>
+<li rel="tab-3" relHref="T2.html">tab3</li>
+</ul>
+<div rel='tab-1'><span>Change the tab to see that there is an animation.</span></div>
+<div rel='tab-2'><span>Tab 2</span></div>
+<div rel='tab-3'><span>Tab 3</span></div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+	var tabs_takes = {
+    "init": function (containId) {
+        if (containId == null || containId == "") {
+            alert("id不能为空");
+            return;
+        }
+        $("#" + containId + ">ul>li").on("click", function () {
+            tabs_takes.tabItemTakes(containId, this)
+        });
+        var liActiveNumber = $("#" + containId + " ul li.selectActive").length;
+        if (liActiveNumber > 0) {
+            var liRel = $("#" + containId + ">ul>li.selectActive").eq(0).attr("rel");
+            $("#" + containId + ">div").css("display", "none");
+            $("#" + containId + ">div[rel='" + liRel + "']").css("display", "block");
+            var tabHrefRel = $("#" + containId + ">ul>li.selectActive").eq(0).attr("relHref");
+            if (tabHrefRel != null && tabHrefRel != "") {
+                $("#" + containId + ">div[rel='" + liRel + "']").load(tabHrefRel);
+            }
+        } else {
+            var liRel = $("#" + containId + ">ul>li").eq(0).attr("rel");
+            $("#" + containId + ">ul>li").eq(0).addClass("selectActive");
+            $("#" + containId + ">div").eq(0).css("display", "block");
+            var tabHrefRel = $("#" + containId + ">ul>li").eq(0).attr("relHref");
+            if (tabHrefRel != null && tabHrefRel != "") {
+                $("#" + containId + ">div[rel='" + liRel + "']").load(tabHrefRel);
+            }
+        }
+    },
+    "tabItemTakes": function (containId, thisObj) {
+        var tabRel = $(thisObj).attr("rel");
+        $("#" + containId + ">ul>li").removeClass("selectActive");
+        $(thisObj).addClass("selectActive");
+        $("#" + containId + ">div").css("display", "none");
+        $("#" + containId + ">div[rel='" + tabRel + "']").css("display", "block");
+        var tabHrefRel = $(thisObj).attr("relHref");
+        if (tabHrefRel != null && tabHrefRel != "") {
+            $("#" + containId + ">div[rel='" + tabRel + "']").load(tabHrefRel);
+        }
+    }
+}
+</script>
+<script type="text/javascript">
+    tabs_takes.init("tabs");
+</script>

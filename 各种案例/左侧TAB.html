@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>左右工作室</title>
+
+    <script src="jquery-1.12.3.min.js"></script>
+    <script>
+        $(function () {
+            $(".container>div").hide();
+            $(".container>div:eq(0)").show();
+
+            $(".navContent a").click(function () {
+                var n = $(".navContent a").index(this);
+                $(".navContent a").index(this);
+                $(".container>div").hide();
+                $(".container>div:eq(" + n + ")").show();
+            })
+
+
+        })
+    </script>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        img, a {
+            display: block;
+            text-decoration: none;
+            color: #000000 !important;
+        }
+
+
+
+
+        .mainContainer {
+            width: 1200px;
+            overflow: hidden;
+            background-color: #FFF;
+        }
+
+        .navContent {
+            float: left;
+        }
+
+        .infoBox {
+            float: left;
+            width: 920px;
+        }
+
+
+        .book {
+            padding-left: 83px;
+            padding-right: 44px;
+            display: block;
+        }
+
+        .box {
+            padding-left: 83px;
+            padding-right: 44px;
+            display: block;
+        }
+
+        .box01 {
+            padding-left: 83px;
+            padding-right: 44px;
+            display: block;
+        }
+
+        .contact {
+            padding-left: 83px;
+            padding-right: 44px;
+            display: block;
+         }
+
+        .navContent a {
+            color: #FFF;
+            font-size: 16px;
+            text-align: center;
+        }
+
+
+
+        .secondInfo {
+            width: 1000px;
+            float: left;
+            height: 600px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<div class="mainContainer">
+    <div class="navContent">
+        <a class="logo" href="#">qq</a>
+        <a class="book" href="#">左右微刊</a>
+        <a class="box" href="#">联系我们</a>
+        <a class="box01" href="#">左右的文</a>
+        <a class="contact" href="#">左右福利</a>
+    </div>
+
+    <div class="container">
+        <div class="infoBox">
+            qq
+        </div>
+        <div class="secondInfo">
+           ss
+        </div>
+        <div class="thirdInfo">
+            44
+        </div>
+        <div class="fourInfo">
+           dd
+        </div>
+        <div class="lastInfo">
+            55
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

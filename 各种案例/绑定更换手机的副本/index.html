@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="link.css"/>
+    <link rel="stylesheet" type="text/css" href="layui.css"/>
+    <style>
+        * {
+            padding:0;
+            margin:0;
+        }
+        body {
+            padding:40px;
+            box-sizing:border-box;
+        }
+        .inputBOX {
+            width:330px;
+            height:40px;
+            display:flex;
+        }
+        input {
+            outline:none;
+            font-size:16px;
+            height:100%;
+            flex:1;
+            display:block;
+            vertical-align:middle;
+            padding-left: 10px;
+        }
+        .intText {
+            width:120px;
+            height:40px;
+            background:rgba(232,44,44,1);
+            color:#FFF;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:0px 2px;
+            box-sizing:border-box;
+            font-size:18px;
+            border:none;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="rebinding-box">
+    <div class="box-timeline">
+        <ul class="text-center" style="width: 800px;">
+            <li>
+                身份验证
+                <div class="box-num1">
+                    1
+                </div>
+
+            </li>
+            <li class="ml45">
+                更换新的号码
+                <div class="box-outside1 outside1ab" id="outside1abs">
+                    <div class="box-num2 num2ab">
+                        2
+                    </div>
+                </div>
+            </li>
+            <li class="ml45">
+                完成
+                <div class="box-outside2 outside2a" id="outside2as">
+                    <div class="box-num3 num3a">
+                        3
+                    </div>
+                </div>
+            </li>
+            <div class="clear">
+            </div>
+        </ul>
+    </div>
+
+    <div class="onebox-form" id="oneform">
+        <div class="oneform">
+            <div>已绑定的手机：182****2365</div>
+            <div class="oneform-box">
+                <div class="oneform-input inputBOX">
+<!--
+                    <input type="password" id="pasval" autocomplete="off" placeholder="请填写登录密码，认证帐号">
+-->
+                        <input type="text" name="" autocomplete="off" id="inputNum1" placeholder="请输入手机号" value="">
+                        <button class="intText" id="intText1">获取验证码</button>
+
+                </div>
+            </div>
+            <div class="onebtn-box">
+                <button class="onebtn" id="onebtn" onclick="fun()">下一步</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="twobox-form" id="twoform">
+        <form class="twoform">
+            <div class="twoform-box">
+                <div class="newtel">
+<!--
+                    <label class="twoform-label">新手机号</label>
+-->
+                    <div class="twoform-input">
+                        <!--id="ntel "-->
+                        <input type="text"  id="inputNum2" autocomplete="off" placeholder="请输入新手机号">
+                    </div>
+                </div>
+                <div class="validatecode">
+<!--
+                    <label class="twoform-label2">验证码</label>
+-->
+                    <div class="twoform-input2 inputBOX">
+                        <!--<input type="text"  autocomplete="off" placeholder="请输入验证码">-->
+                        <input type="text" name=""  id="verificationCode" placeholder="请输入验证码" value="">
+                        <input type="button" class="intText" id="intText2" value="获取验证码">
+                       <!-- <button class="sendcode" id="intText2"></button>-->
+                </div>
+            </div>
+            </div>
+        </form>
+        <div class="twobtn-box">
+            <button class="twobtn" id="twobtn" onclick="fun1()">提交</button>
+        </div>
+    </div>
+
+    <div class="threebox-form" id="threeform">
+        <div class="successr">
+            <div class="symbol">
+            </div>
+            <p>恭喜，手机号182****1236已设置成功</p>
+            <p style="font-size: 14px; text-align: center">为保障您的账号信息安全，在变更账户中的重要信息时，
+                需要进行身份验证，感谢理解和支持</p>
+            <p style="font-size: 12px; text-align: center; color: #757575"><a style="text-align: center" class="refresh_text"><strong style="color: #e82c2c" id="second_show">5</strong>秒后将自动返回安全中心首页。</a></p>
+        </div>
+    </div>
+</div>
+</body>
+<script src="layui.js" type="text/javascript" charset="utf-8"></script>
+<script src="jquery.js"></script>
+<script type="text/javascript">
+    var onebtns = document.getElementById("onebtn");
+    var twobtns = document.getElementById("twobtn");
+    var soutside1ab = document.getElementById("outside1abs");
+    var soutside2as = document.getElementById("outside2as");
+    var oneforms = document.getElementById("oneform");
+    var twoforms = document.getElementById("twoform");
+    var threeforms = document.getElementById("threeform");
+
+    function fun() {
+        var pasvals = document.getElementById("inputNum1").value;
+        isPasswd(pasvals);
+
+        function isPasswd(s) {
+            var patrn = /\d{6}/;
+            if (!patrn.exec(s)) {
+                alert("只能输入6数字")
+                return false
+            } else {
+                soutside1ab.classList.remove("outside1ab");
+                oneforms.style.display = "none";
+                twoforms.style.display = "block";
+            }
+        }
+    }
+
+
+    function fun1() {
+        var str = document.getElementById("inputNum2").value;
+        var verificationCode = document.getElementById("verificationCode").value;
+        isPoneAvailable(str);
+
+        function isPoneAvailable(str) {
+            var myreg = /^[1][0-9]{10}$/;
+            var verificationCode = /\d{6}/;
+            if (!myreg.test(str))  {
+                alert("请输入正确的手机号");
+                return false;
+            } else {
+                threeforms.style.display = "block";
+                twoforms.style.display = "none";
+                soutside2as.classList.remove("outside2a");
+            }
+        }
+        showError();
+    }
+
+</script>
+<script type="text/javascript">
+    var tel
+    var time = 60
+    var t1
+    clearInterval(t1);
+    $('#intText1').on("click", function() {
+        tel = $("#inputNum1").val();
+            t1 = setInterval(function() {
+                time--;
+                $("#intText1").html(time + "秒再获取")
+                $("#intText1").attr("disabled", "disabled")
+                if (time == 0) {
+                    time = 60;
+                    $("#intText1").removeAttr("disabled")
+                    $("#intText1").html("获取验证码")
+                    clearInterval(t1)
+                }
+            }, 1000);
+    })
+</script>
+<script type="text/javascript">
+    var timeout = 5;
+    function showError() {
+        document.getElementById("second_show").innerHTML = timeout;
+        timeout--;
+        if (timeout == 0) {
+            window.location.href = "personalCenter.html";
+        } else {
+            setTimeout("showError()", 1000);
+        }
+    }
+</script>
+<script type="text/javascript">
+    var tel2
+    var time2 = 60
+    var t2
+    clearInterval(t2);
+    $('#intText2').on("click", function() {
+        tel2 = $("#inputNum2").val();
+        var myreg2 = /^1(3[0-9]|5[189]|8[6789])[0-9]{8}$/;
+        if (!(/^1[34578]\d{9}$/.test(tel2))) {
+            alert("手机号不正确");
+        } else {
+            t2 = setInterval(function() {
+                time2--;
+                $("#intText2").val(time2 + "秒再获取")
+                $("#intText2").attr("disabled", "disabled")
+                if (time2 == 0) {
+                    time2 = 60;
+                    $("#intText2").removeAttr("disabled")
+                    $("#intText2").val("获取验证码")
+                    clearInterval(t2)
+                }
+            }, 1000);
+        }
+    })
+</script>
+
+</html>

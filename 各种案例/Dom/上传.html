@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+<div>
+
+    <input type="file" id="picture" multiple/>
+</div>
+<div id="previewImg"></div>
+
+<script type="text/javascript" src="jquery-1.12.3.min.js"></script>
+<script type="text/javascript">
+    $('#picture').on('change', function () {
+        var imgFiles = $(this)[0].files
+        for (i = 0; i < imgFiles.length; i++) {
+            filePath = imgFiles[i].name
+            fileFormat = filePath.split('.')[1].toLowerCase()
+            src = window.URL.createObjectURL(imgFiles[i])
+            if (!fileFormat.match(/png|jpg|jpeg|gif/)) {
+                alert('上传错误,文件格式必须为：png/jpg/jpeg|gif')
+                return
+            }
+            var preview = document.getElementById("previewImg")
+            var img = document.createElement('img')
+            /*img.width = 200
+            img.height = 200*/
+            img.src = src;
+            preview.appendChild(img)
+            console.log(src);
+        }
+    })
+    /*$(document).ready(function () {
+        $("#previewImg").click(function () {
+            $("img").remove();
+        });
+    });*/
+</script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        img {
+            border: none;
+            display: block
+        }
+
+        .box {
+            width: 1200px;
+            margin: 50px auto;
+        }
+
+        .imgFileUploade {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            min-height: 300px;
+        }
+
+        .imgFileUploade .header {
+            height: 50px;
+            width: 1160px;
+            line-height: 50px;
+            position: absolute;
+        }
+
+        .imgFileUploade .header span {
+            display: block;
+            float: left;
+        }
+
+        .imgFileUploade .header span.imgTitle {
+            line-height: 50px;
+        }
+
+        .imgFileUploade .header span.imgTitle b {
+            color: red;
+            margin: 0 5px;
+            line-height: 57px;
+            display: block;
+            float: right;
+            font-size: 20px;
+        }
+
+        .imgFileUploade .header span.imgClick {
+            /*width:184px;*/
+            /*height:50px;*/
+            /*background:rgba(232,44,44,1);*/
+            /*border-radius:5px;*/
+            width: 102px;
+            height: 102px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 27px;
+            position: absolute;
+            color: #ffffff;
+            background: url(img/uicon_upload.png) no-repeat center center;
+            background-size: cover;
+        }
+
+        .imgFileUploade .header span.imgcontent {
+            color: #999;
+            margin-left: 120px;
+            line-height: 50px;
+        }
+
+        .imgFileUploade .imgAll {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        /*.imgFileUploade .imgAll ul:after{
+                visibility: hidden;  display: block; font-size: 0; content: ".";  clear: both; height: 0
+        } */
+        .imgFileUploade .imgAll ul:after {
+            /*visibility: hidden;*/
+            display: block;
+            font-size: 0;
+            content: ".";
+            clear: both;
+            /*height: 0;*/
+        }
+
+        .imgFileUploade .imgAll li {
+            width: 100px;
+            height: 100px;
+            border: solid 1px #ccc;
+            margin: 20px 20px 40px 20px;
+            float: left;
+            position: relative;
+            box-shadow: 0 0 10px #eee;
+        }
+
+        .imgFileUploade .imgAll li img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .delImg {
+            position: absolute;
+            top: -23px;
+            right: -2px;
+            width: 22px;
+            height: 22px;
+            display: block;
+            cursor: pointer;
+            background: url("img/icon_del.png");
+        }
+
+        .box, .box2, .box3, .box4 {
+            border: solid 1px #ccc;
+        }
+        .upload-img-title{
+            width: 1200px;
+            height: 43px;
+            background: rgba(242,242,244,1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 16px;
+            color: #757575;
+        }
+        #allUl li:first-child{
+            margin-left: 120px;
+        }
+        #j_cbAll{
+            margin-left: 20px;
+            margin-top: 6px;
+        }
+        .sizeImg{
+            margin-right: 20px;
+            color: #e82c2c;
+        }
+        .sizeImg div{
+            display: none;
+        }
+        .sizeImg div:nth-child(1){
+            display: block;
+        }
+    </style>
+    <script src="imgFileupload.js"></script>
+</head>
+<body>
+
+<div class="box">
+    <section class="upload-img-title">
+        <article style="display: flex">
+            <input type="checkbox" id="j_cbAll"/><label style="margin-left: 10px">全选</label>
+            <div onclick="deleteUser()" style="margin: 0 50px;cursor: pointer">勾选删除</div>
+            <div onclick="allDelect()" style="display: flex;cursor: pointer"><img src="img/icon_del.png"><span>全部删除</span></div>
+        </article>
+        <article class="sizeImg">
+            <div> 5寸 600*800</div>
+            <div> 6寸 768*1024</div>
+            <div> 7寸 960*1280</div>
+            <div> 8寸 960*1280</div>
+            <div>10寸 1200*1600</div>
+            <div>12寸 1200*1600</div>
+            <div>16寸 1953*2048</div>
+            <div>18寸 1953*2048</div>
+            <div>20寸 1953*2048</div>
+            <div>24寸 2700*3300</div>
+            <div>30寸 3300*4100</div>
+            <div>36寸 3300*4900</div>
+        </article>
+    </section>
+    <section>
+
+    </section>
+</div>
+
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="imgFileupload.js"></script>
+<script type="text/javascript">
+    var imgFile = new ImgUploadeFiles('.box', function (e) {
+        this.init({
+            MAX: 500, //限制个数
+            MH: 100, //像素限制高度
+            MW: 120, //像素限制宽度
+            callback: function (arr) {
+                console.log(arr)
+            }
+        });
+    });
+
+
+    function deleteUser() {
+        var number = '';
+        $('input:checkbox[name=selectFlag]:checked').each(function (k, e) {
+            $(e).parent().parent().remove();
+
+        });
+        // alert(number);
+
+        // $(".imgAll ul li").find(".imgAll ul li").remove();
+
+    };
+
+    //	全部删除
+    function allDelect() {
+        $("#allUl").empty();
+
+    }
+
+
+
+    $(".addition").click(function () {
+        var addition = 0;
+        addition++;
+    })
+
+
+</script>
+
+<script type="text/javascript">
+
+    function addOne(a) {
+        // var num = document.querySelector(".showNumber");
+        // num.addEventListener("click",function () {
+        //     console.log(num);
+        //
+        // },false);
+        // var num = a.parentNode.childNodes[1].value++;
+        var num1 = a.parentNode.childNodes[1];
+        console.log(a.value);
+        if (num1.value < 100){
+            num1.value = parseInt(num1.value) + 1;
+        }else {
+            alert("出错了，只能打印100张");
+            num1.value = 100;
+        }
+
+    }
+    function subOne(b) {
+        var num = b.parentNode.childNodes[1];
+        console.log(b.value);
+        if (num.value == 1){
+            num == 1;
+            alert("亲，最少一张哦");
+        }else {
+            num.value = parseInt(num.value) - 1;
+        }
+    }
+    
+    function showNumber(c) {
+        var showNumber = c.parentNode.childNodes[i];
+        console.log(c.value);
+        if (c.value < 100){
+            alert("您要打印"+c.value+"张");
+        }else {
+            alert("只能一张图片打印100张");
+            c.value =100;
+        }
+    }
+    
+
+
+
+</script>
+
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+    //获取全选的这个复选框
+    var ckAll = my$("j_cbAll");
+    //获取body中所有的小复选框
+    var cks = my$("allUl").getElementsByTagName("input");
+    //    点击全选的这个复选框获取当前的状态，设置tbody中所有复选框的状态
+    ckAll.onclick = function () {
+        console.log(this.checked);
+        for(var i = 0; i < cks.length; i++){
+            cks[i].checked = this.checked;
+        }
+    };
+    //    获取tbody中所有的复选框，分别注册点击事件
+    for(var i = 0 ; i < cks.length; i++){
+        cks[i].onclick = function () {
+            //    判断是否所有的复选框都选中
+            var flag  = true;//默认都被选中了
+            for(var j = 0; j < cks.length; j++){
+                if (!cks[j].checked){
+                    //没选中就进来了
+                    flag = false;
+                    break;
+                }
+            }
+            //    都选中了:全选的这个复选框的状态就是flag这个变量的值
+            ckAll.checked = flag;
+        }
+    }
+</script>
+</body>
+</html>

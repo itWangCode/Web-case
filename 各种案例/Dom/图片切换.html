@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+    </head>
+
+    <body>
+        <div>
+            <img class="imgclick" src="img/close.png" />
+        </div>
+
+        <div>
+            <img class="imgclick" src="img/close.png" />
+        </div>
+    </body>
+    <script>
+        /* 实现图片切换 */
+        $(".imgclick").toggle(function() {
+            $(this).attr("src", "img/close.png");
+        }, function() {
+            $(this).attr("src", "img/open.png");
+        }).attr("src", "img/open.png");
+    </script>
+
+</html>

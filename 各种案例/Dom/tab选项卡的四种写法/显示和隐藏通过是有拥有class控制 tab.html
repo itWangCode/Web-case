@@ -1,0 +1,65 @@
+<!-- 显示和隐藏通过是有拥有class控制，先把所有的内容隐藏dispaly设为none，而该class的display设置为block，遍历所有标题节点和内容节点，点击标题后，该标题节点和对用的内容节点拥有class，其他的没有。 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+*{
+ padding: 0;
+ margin: 0;
+}
+li{
+ list-style: none;
+ float:left;
+}
+#tabCon {
+ clear: both;
+}
+#tabCon div {
+ display:none;
+}
+#tabCon div.fdiv {
+ display:block;
+}
+</style>
+</head>
+<body>
+<div id="tanContainer">
+ <div id="tab">
+ <ul>
+  <li class="fli">标题一</li>
+  <li>标题二</li>
+  <li>标题三</li>
+  <li>标题四</li>
+ </ul>
+ </div>
+ <div id="tabCon">
+ <div class="fdiv">内容一</div>
+ <div>内容二</div>
+ <div>内容三</div>
+ <div>内容四</div>
+</div>
+</div>
+</body>
+<script>
+var tabs=document.getElementById("tab").getElementsByTagName("li");
+var divs=document.getElementById("tabCon").getElementsByTagName("div");
+ 
+for(var i=0;i<tabs.length;i++){
+ tabs[i].onclick=function(){change(this);}
+}
+ 
+function change(obj){
+for(var i=0;i<tabs.length;i++){
+ if(tabs[i]==obj){
+ tabs[i].className="fli";
+ divs[i].className="fdiv";
+}else{
+ tabs[i].className="";
+ divs[i].className="";
+ }
+ }
+} 
+</script>
+</html>
